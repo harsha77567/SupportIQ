@@ -20,7 +20,8 @@ The system uses a pipeline architecture to keep analytical results deterministic
 flowchart TD
     User([User]) --> UI[Web Dashboard]
     UI --> API[FastAPI Endpoints]
-    API --> LLM[Ollama LLM (llama3.2:3b)]
+    API --> LLM[Ollama]
+            MODEL[Llama 3.2 3B]
     LLM -- JSON Intent --> Validator[Pydantic Validation]
     Validator --> Engine[Pandas Analytics Engine]
     Engine --> CSV[(support_tickets.csv)]
