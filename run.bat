@@ -1,0 +1,3 @@
+@echo off
+echo Starting SupportIQ...
+.venv\Scripts\uvicorn app.main:app --reload

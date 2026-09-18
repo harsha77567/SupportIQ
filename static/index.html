@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SupportIQ - AI Intelligence</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                SupportIQ
+            </div>
+            <div class="header-title">AI Support Ticket Intelligence</div>
+        </header>
+
+        <main class="main-content">
+            <section class="summary-cards" id="summaryCards">
+                <div class="card">
+                    <div class="card-title">Total Tickets</div>
+                    <div class="card-value" id="valTotal">-</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Open</div>
+                    <div class="card-value text-blue" id="valOpen">-</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Escalated</div>
+                    <div class="card-value text-red" id="valEscalated">-</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Resolved</div>
+                    <div class="card-value text-green" id="valResolved">-</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Average Rating</div>
+                    <div class="card-value" id="valAvgRating">-</div>
+                </div>
+            </section>
+
+            <section class="query-section">
+                <h2>Ask your support data</h2>
+                <div class="query-input-group">
+                    <input type="text" id="queryInput" placeholder="e.g. How many tickets are currently open?" autocomplete="off" />
+                    <button id="btnAsk" class="btn-primary">Ask AI</button>
+                </div>
+                <div class="quick-chips">
+                    <span class="chip" onclick="setQuery('Open tickets')">Open tickets</span>
+                    <span class="chip" onclick="setQuery('Top resolving agent')">Top resolving agent</span>
+                    <span class="chip" onclick="setQuery('Critical unresolved')">Critical unresolved</span>
+                    <span class="chip" onclick="setQuery('Lowest average customer rating')">Lowest agent rating</span>
+                    <span class="chip" onclick="setQuery('Show tickets with resolution time above 20 hours')">Long resolution tickets</span>
+                </div>
+                
+                <div id="queryResults" class="results-container hidden">
+                    <div class="loading hidden" id="queryLoading">Analyzing...</div>
+                    <div class="error hidden" id="queryError"></div>
+                    <div class="result-content hidden" id="queryContent">
+                        <div class="llm-badge" id="llmBadge">LLM</div>
+                        <div class="intent-box">
+                            <strong>Parsed Intent:</strong> <pre id="intentCode"></pre>
+                        </div>
+                        <div class="answer-box">
+                            <strong>Answer:</strong> <span id="answerText"></span>
+                        </div>
+                        <div class="data-table-container">
+                            <table class="data-table" id="dataTable">
+                                <thead id="dtHead"></thead>
+                                <tbody id="dtBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="anomalies-section">
+                <h2>Anomalies Detected</h2>
+                <div class="anomaly-cards" id="anomalyCards">
+                    <!-- Loaded dynamically -->
+                </div>
+                <div class="anomalies-list" id="anomaliesList">
+                    <!-- Details dynamically -->
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
