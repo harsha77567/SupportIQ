@@ -14,7 +14,7 @@ Customer support teams generate large amounts of data, but extracting actionable
 - **Modern UI:** A clean, responsive dashboard presenting summary metrics, anomaly cards, and query results.
 
 ## 4. Architecture
-The system uses a pipeline architecture to ensure absolute accuracy on analytical results:
+The system uses a pipeline architecture to keep analytical results deterministic.
 
 ```mermaid
 flowchart TD
@@ -30,7 +30,11 @@ flowchart TD
 
 ## 5. Why this architecture?
 The core principle of SupportIQ is: **LLM = Natural language understanding, Python = Actual computation**.
-By forcing the LLM to output a strictly structured intent (e.g., `{"operation": "count", "filters": {"status": "Open"}}`) and validating it with Pydantic, the system completely avoids hallucinations on numerical answers. The deterministic Pandas engine runs the actual math.
+By forcing the LLM to output a strictly structured intent (e.g., `{"operation": "count", "filters": {"status": "Open"}}`) and validating it with Pydantic. 
+The deterministic Pandas engine runs the actual math.
+The LLM is responsible only for natural-language understanding and intent extraction.
+All numerical calculations are performed by the deterministic Pandas analytics engine,
+which significantly reduces the risk of numerical hallucination.
 
 ## 6. Technology stack
 - **Python** (Backend Logic)
